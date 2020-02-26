@@ -1,0 +1,55 @@
+body { background-image: url(images/mud.png);
+    background-repeat: repeat-x;
+     background-color: grey ;
+     padding: 0px;
+     margin: 0px;
+}
+
+
+ul{
+ background-color: blanchedalmond;
+ color: blanchedalmond;
+ line-height: 50px;
+ text-align: center;
+
+}
+ li{ display: inline;
+    padding-left: 10px;
+    text-shadow: yellows;
+ }
+   li:visited{
+       color: white;
+   } 
+   
+ li:hover{  
+background-color: white ; 
+font-weight: bold;}
+@font-face{
+    font-family: good;
+    src: url(GiantFont.otf);
+}
+li:visited{
+    color: blanchedalmond;
+}
+h1{
+ font-family: good;
+ text-align: center;
+ color: chartreuse;
+ border: black;}
+ 
+  
+ p {
+ border: 3px dotted black;
+ border-top: 6px dotted gainsboro;
+ border-bottom: 7px outset gold;
+
+
+ } h2 ,h3{
+     text-align: center;
+     border: double rgb(35, 22, 214);
+     font-size: xx-large;
+ }
+ table{
+     border: 2px;
+ }
+ 

@@ -1,0 +1,67 @@
+        
+        // Social Links JS Complete
+        var get_parm = function(name) {
+            return (location.search.split(name + '=')[1] || '').split('&')[0];
+        }
+
+        // Shaer Links Work
+        var base_url = window.location.origin
+        var pagename = window.location.pathname;
+        var URL = window.location.href;
+
+        var pageName = URL.split('=').reverse()[1];
+        // console.log(pageName);
+
+        var setOfShareLinkMetaTags = function( findTab ) {
+
+            var meta_title  = $("#-" + findTab ).find('h2.style-font > a').html();
+            var meta_desc   = $("#-" + findTab ).find('p.big').html();
+
+            $("title").html( meta_title );
+            $("meta[name='description']").attr("content", meta_desc );
+
+            // Google+
+            $("meta[itemprop='name']").attr("content", meta_title);
+            $("meta[itemprop='description']").attr("content", meta_desc);
+
+            // Twitter
+            $("meta[name='twitter:title']").attr("content", meta_title);
+            $("meta[name='twitter:description']").attr("content", meta_desc);
+
+            // Open Graph
+            $("meta[property='og\\:title']").attr("content", meta_title);
+            $("meta[property='og\\:description']").attr("content", meta_desc);
+        }
+
+        var findOrCreateShareLinks = function( share_links ) {
+
+            if( ! share_links ) {
+                share_links = base_url + pagename + '?tab=1';
+            }
+            // console.log( share_links );
+
+            $(".icon-bar .facebook").attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + share_links);
+            $(".icon-bar .twitter").attr("href", "http://twitter.com/share?url=" + share_links);
+            $(".icon-bar .google").attr("href", "https://plus.google.com/share?url=" + share_links);
+            $(".icon-bar .linkedin").attr("href", "http://www.linkedin.com/shareArticle?url=" + share_links);
+        }
+
+        // Make the share links
+        $(".tabs_vertical li").on("click", function(){       
+            
+            var activetab   = $(this).find("a").attr('href');
+            var findtab     = activetab.replace('#-', '');
+            var share_links = base_url + pagename + '?tab=' + findtab;
+            console.log( 'findtab: ' + findtab );
+
+            setOfShareLinkMetaTags( findtab );
+            findOrCreateShareLinks( share_links );
+        });
+
+        findOrCreateShareLinks();
+
+        // Load Active Tab
+        if( get_parm('tab') ) {        
+            $( ".tabs_vertical li" ).removeClass('ui-tabs-active ui-state-active');
+            $( ".tabs_vertical" ).tabs({ active: ( parseInt(get_parm('tab')) - 1 )  });
+        }
